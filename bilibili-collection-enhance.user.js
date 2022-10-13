@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name         Bilibili合集观看进度
 // @namespace    https://github.com/zkytech/Tampermonkey_scripts
-// @version      0.7.0
+// @version      0.7.1
 // @description  显示合集整体观看进度，方便掌控学习进度，合理安排学习时间。
 // @author       zkytech
 // @include      *://www.bilibili.com/video/BV*
 // @include      *://www.bilibili.com/video/av*?p=*
 // @grant        none
+// @run-at document-end
 // ==/UserScript==
 
 (function () {
@@ -68,7 +69,7 @@
 
     /**
      * av 转 bv
-     * @param {*} av 
+     * @param {*} av
      */
     function toBv(av) {
         var p = BigAdd((av ^ cn_n).toString(), cn_a);
@@ -157,7 +158,7 @@
                     exec_when_element_exist(
                         function () {
                             // 将自定义组件添加到html
-                            document.querySelector(".right-container-inner").insertBefore(time_plan_tools, document.querySelector("#danmukuBox"))
+                            document.querySelector(".r-con").insertBefore(time_plan_tools, document.querySelector("#danmukuBox"))
                             document.querySelector(".bpx-player-control-bottom-left").appendChild(container)
                             // 绑定事件：设定目标时间
                             document.querySelector("#zky_target_time_input").addEventListener("keydown", function (e) {
